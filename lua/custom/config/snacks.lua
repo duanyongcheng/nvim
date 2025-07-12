@@ -13,6 +13,7 @@ require('snacks').setup {
         { icon = ' ', key = 'o', desc = 'Find history', action = 'lua Snacks.picker.recent()' },
         { icon = ' ', key = 'e', desc = 'New file', action = ':enew' },
         { icon = ' ', key = 'o', desc = 'Recent files', action = ':lua Snacks.picker.recent()' },
+        { icon = '↻', key = 's', desc = 'Restore Session', action = ':lua require("auto-session.session-lens").search_session()' },
         { icon = '󰒲 ', key = 'L', desc = 'Lazy', action = ':Lazy', enabled = package.loaded.lazy ~= nil },
         { icon = '󰔛 ', key = 'P', desc = 'Lazy Profile', action = ':Lazy profile', enabled = package.loaded.lazy ~= nil },
         { icon = ' ', key = 'M', desc = 'Mason', action = ':Mason', enabled = package.loaded.lazy ~= nil },
