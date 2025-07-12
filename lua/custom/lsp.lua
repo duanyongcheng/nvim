@@ -1,5 +1,7 @@
 vim.lsp.enable 'lua_ls'
 vim.lsp.enable 'rust'
+vim.lsp.enable 'vue_ls'
+vim.lsp.enable 'ts_ls'
 -- Define LSP-related keymaps
 vim.api.nvim_create_autocmd('LspAttach', {
   group = vim.api.nvim_create_augroup('lsp-attach', { clear = true }),
