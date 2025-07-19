@@ -2,7 +2,12 @@ return {
   'catppuccin/nvim',
   priority = 1000, -- Make sure to load this before all the other start plugins.
   init = function()
-    vim.cmd.colorscheme 'catppuccin-mocha'
+    -- Set theme based on system dark mode
+    if vim.fn.system('defaults read -g AppleInterfaceStyle 2>/dev/null') == 'Dark\n' then
+      vim.cmd.colorscheme 'catppuccin-mocha'
+    else
+      vim.cmd.colorscheme 'catppuccin-latte'
+    end
     vim.cmd.hi 'Comment gui=none'
   end,
   config = function()
