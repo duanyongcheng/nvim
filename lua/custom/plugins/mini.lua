@@ -12,12 +12,12 @@ return {
   end,
   config = function()
     -- require('mini.comment').setup {}
-    require('mini.starter').setup {
-      evaluate_single = false,
-      header = '',
-      items = {},
-      footer = '',
-    }
+    -- require('mini.starter').setup {
+    --   evaluate_single = false,
+    --   header = '',
+    --   items = {},
+    --   footer = '',
+    -- }
     require('mini.files').setup {}
     require('mini.ai').setup { mappings = {
       goto_left = '[',

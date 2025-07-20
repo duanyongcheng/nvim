@@ -14,7 +14,7 @@ return {
       enabled = true, -- Enables/disables auto creating, saving and restoring
       root_dir = vim.fn.stdpath 'data' .. '/sessions/', -- Root dir where sessions will be stored
       auto_save = true, -- Enables/disables auto saving session on exit
-      auto_restore = true, -- Enables/disables auto restoring session on start
+      auto_restore = false, -- Enables/disables auto restoring session on start
       auto_create = true, -- Enables/disables auto creating new session files. Can take a function that should return true/false if a new session file should be created or not
       suppressed_dirs = nil, -- Suppress session restore/create in certain directories
       allowed_dirs = nil, -- Allow session restore/create in certain directories
@@ -32,7 +32,7 @@ return {
       lsp_stop_on_restore = false, -- Should language servers be stopped when restoring a session. Can also be a function that will be called if set. Not called on autorestore from startup
       restore_error_handler = nil, -- Called when there's an error restoring. By default, it ignores fold errors otherwise it displays the error and returns false to disable auto_save
       purge_after_minutes = nil, -- Sessions older than purge_after_minutes will be deleted asynchronously on startup, e.g. set to 14400 to delete sessions that haven't been accessed for more than 10 days, defaults to off (no purging), requires >= nvim 0.10
-      log_level = 'error', -- Sets the log level of the plugin (debug, info, warn, error).
+      log_level = 'info', -- Sets the log level of the plugin (debug, info, warn, error).
 
       session_lens = {
         load_on_setup = true, -- Initialize on startup (requires Telescope)
