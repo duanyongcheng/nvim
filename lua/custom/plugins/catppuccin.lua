@@ -3,10 +3,11 @@ return {
   priority = 1000, -- Make sure to load this before all the other start plugins.
   init = function()
     -- Set theme based on system dark mode
-    if vim.fn.system('defaults read -g AppleInterfaceStyle 2>/dev/null') == 'Dark\n' then
-      vim.cmd.colorscheme 'catppuccin-mocha'
+    if vim.fn.system 'defaults read -g AppleInterfaceStyle 2>/dev/null' == 'Dark\n' then
+      -- vim.cmd.colorscheme 'catppuccin-mocha'
+      vim.cmd.colorscheme 'catppuccin-frappe'
     else
-      vim.cmd.colorscheme 'catppuccin-latte'
+      vim.cmd.colorscheme 'catppuccin-frappe'
     end
     vim.cmd.hi 'Comment gui=none'
   end,

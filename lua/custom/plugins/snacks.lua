@@ -91,5 +91,14 @@ return {
     end, 'Open lazygit')
     map('<leader>n', Snacks.notifier.show_history, 'Notification history')
     map('<leader>gb', Snacks.git.blame_line, 'Git blame line')
+
+    -- Terminal
+    map('<C-\\>', function()
+      Snacks.terminal.toggle()
+    end, 'Toggle floating terminal')
+    vim.keymap.set('t', '<C-\\>', function()
+      Snacks.terminal.toggle()
+    end, { desc = 'Toggle floating terminal' })
   end,
 }
+

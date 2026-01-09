@@ -2,29 +2,30 @@ return {
   cmd = { 'vue-language-server', '--stdio' },
   filetypes = { 'vue' },
   root_markers = { 'package.json' },
+  init_options = {
+    typescript = {
+      tsdk = '',
+    },
+  },
   on_init = function(client)
-    client.handlers['tsserver/request'] = function(_, result, context)
-      local clients = vim.lsp.get_clients { bufnr = context.bufnr, name = 'vtsls' }
-      if #clients == 0 then
-        vim.notify('Could not find `vtsls` lsp client, required by `vue_ls`.', vim.log.levels.ERROR)
-        return
+    -- 自动检测 tsdk 路径
+    local util = vim.fs
+    local root = client.config.root_dir
+    if root then
+      local node_modules_ts = util.joinpath(root, 'node_modules', 'typescript', 'lib')
+      if vim.uv.fs_stat(node_modules_ts) then
+        client.config.init_options.typescript.tsdk = node_modules_ts
       end
-      local ts_client = clients[1]
-
-      local param = unpack(result)
-      local id, command, payload = unpack(param)
-      ts_client:exec_cmd({
-        title = 'vue_request_forward', -- You can give title anything as it's used to represent a command in the UI, `:h Client:exec_cmd`
-        command = 'typescript.tsserverRequest',
-        arguments = {
-          command,
-          payload,
-        },
-      }, { bufnr = context.bufnr }, function(_, r)
-        local response_data = { { id, r.body } }
-        ---@diagnostic disable-next-line: param-type-mismatch
-        client:notify('tsserver/response', response_data)
-      end)
+    end
+  end,
+  before_init = function(_, config)
+    -- 让 vue_ls 使用内置 TypeScript 支持，不依赖外部 tsserver
+    if config.init_options and config.init_options.typescript and config.init_options.typescript.tsdk == '' then
+      -- 尝试全局 typescript
+      local global_ts = vim.fn.exepath 'tsserver'
+      if global_ts ~= '' then
+        config.init_options.typescript.tsdk = vim.fn.fnamemodify(global_ts, ':h')
+      end
     end
   end,
 }

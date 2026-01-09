@@ -1,6 +1,14 @@
 ---@diagnostic disable: missing-fields
 require('snacks').setup {
   notifier = {},
+  terminal = {
+    win = {
+      style = 'float',
+      border = 'rounded',
+      width = 0.8,
+      height = 0.8,
+    },
+  },
   picker = {
     matcher = { frecency = true, cwd_bonus = true, history_bonus = true },
     formatters = { icon_width = 3 },
