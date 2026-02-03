@@ -19,7 +19,7 @@ return {
     map('<leader>fk', function()
       Snacks.picker.keymaps { layout = 'dropdown' }
     end, 'Find keymap')
-    map('<leader><leader>', function()
+    map('<leader>e', function()
       Snacks.picker.buffers { sort_lastused = true }
     end, 'Find buffers')
     map('<leader>fm', Snacks.picker.marks, 'Find mark')
@@ -101,4 +101,3 @@ return {
     end, { desc = 'Toggle floating terminal' })
   end,
 }
-
